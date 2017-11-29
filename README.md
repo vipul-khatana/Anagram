@@ -1,5 +1,13 @@
 # Anagram
-This code presents a way of creating the anagrams of a given word.
+In this project we create the anagrams of a given word.
+
+## Sections 
++ [Overview](https://github.com/vipul-khatana/Anagram#overview) 
++ [Methodology](https://github.com/vipul-khatana/Anagram#methodology)
++ [File Format](https://github.com/vipul-khatana/Anagram#file-format)
++ [How to run](https://github.com/vipul-khatana/Anagram#how-to-run)
++ [Author](https://github.com/vipul-khatana/Anagram#author)
++ [Contributing](https://github.com/vipul-khatana/Anagram#contributing)
 
 ## Overview 
  
