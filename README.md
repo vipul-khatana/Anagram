@@ -29,45 +29,45 @@ Once we have the hashtable for the dictionary, we find out the possible permutat
 
 + **Vocabulary file** The vocabulary file must be stored as  vocabulary.txt format. The first line of the file will indicate the number of lines in the vocabulary followed by the words in every file. For eg. 
 
-                         6
+     6
 
- a
+     a
 
- it
+     it
 
- bit
+     bit
 
- bat 
+     bat 
 
- tab 
+     tab 
 
- i
+     i
 
 + **Input file** The input file (input.txt) The first line will have the number (K) of input strings. This will be followed by K lines, with one string per line. It will have only lowercase letters, digits, and apostrophe. It will not have a space. A sample input.txt is given as under
 
- 2
+    2
 
- bait
+    bait
 
- bb
+    bb
 
 + **Output file** The output file produces all valid anagrams of each input string and output -1 after finishing with one input and moving onto the next. The output for a particular string will be in **lexicographic order**. For example, for the input file above output will be:
 
- a bit
+    a bit
 
- bat i
+    bat i
 
- bit a
+    bit a
 
- i bat
+    i bat
 
- i tab
+    i tab
 
- tab i
+    tab i
 
- -1
+    -1
 
- -1
+    -1
 
 ## How to run 
 
