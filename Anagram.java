@@ -1,3 +1,9 @@
+/*
+Created on Wed Oct 14 21:11:54 2015
+
+@author: vipulkhatana
+*/
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,9 +23,10 @@ public class Anagram
 	static LinkedList<String>[] hashmapLinkedList = new LinkedList[tableSize];
 	static HashMap< Character,Integer> hm = new HashMap< Character,Integer>();
 	static ArrayList<String> lsPerm= new ArrayList<String>();
+	
+	//Computing the key 
 	static int hashString(String str)
 	{
-		//System.out.println(str);
 		int code=0;
 		for(int i=0;i<str.length();i++)
 		{
@@ -35,7 +42,7 @@ public class Anagram
 	    permutation("", str); 
 	}
 
-	private static void permutation(String prefix, String str) {
+	private static void permutation(String prefix, String str) {//Adds the permutation of str to prefix
 	    int n = str.length();
 	    if (n == 0) 
 	    {
@@ -51,40 +58,37 @@ public class Anagram
 	 * @param args
 	 * @throws IOException 
 	 */
+	
 	public static void main(String[] args) throws IOException 
 	{
 		String vocabFileName = String.valueOf(args[0]);
 		String inputFileName = String.valueOf(args[1]);
-		//System.out.println("vocabFileName="+vocabFileName);
-		//System.out.println("inputFileName="+inputFileName);
-		// String vocabFileName = "vocabulary1.txt";
-		// String inputFileName = "input1.txt";
-		// TODO Auto-generated method stub
 		int hashCount=1;
+		
+		//Building the dictionary
 		for (char alphabet = 'a'; alphabet <= 'z'; alphabet++) 
 		{
-			//System.out.print(alphabet);
 		    hm.put(alphabet,hashCount);
 		    hashCount+=1;
 		}
+		
 		for (char alphabet = '0'; alphabet <= '9'; alphabet++) 
 		{
-			//System.out.print(alphabet);
 		    hm.put(alphabet,hashCount);
 		    hashCount+=1;
 		}
 		char alphabet='\'';
-		//System.out.print(alphabet);
 		hm.put(alphabet, hashCount);
 		hashCount+=1;
 		alphabet='&';
-		//System.out.print(alphabet);
 		hm.put(alphabet, hashCount);
+		
 		for (int i=0;i<tableSize;i++)
 		{
 			hashmapLinkedList[i] = new LinkedList<String>();
 		}
 		String vocabLine = null;
+		
 		try {
 			FileReader fileReader=new FileReader(vocabFileName);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -93,32 +97,17 @@ public class Anagram
 			for(int z=0;z<numWordsInVocab;z++)
 			{
 				vocabLine = bufferedReader.readLine();
-				//if(z==24976)
-				//{
-					//System.out.println(vocabLine);
-				//}
 				hashmapLinkedList[hashString(vocabLine)].add(vocabLine);
 			}
 	        bufferedReader.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-//		int maxLen=0;
-//		for(int i=0;i<tableSize;i++)
-//		{
-//			if(hashmapLinkedList[i].size()>maxLen)
-//			{
-//				maxLen=hashmapLinkedList[i].size();
-//			}
-//		}
-//		System.out.println(maxLen);
-		
-		
-		
+		//Searching for the permutations of input in dictionary
 		String inputLine = null;
-		try {
+		try {	
+			//Read the input
 			FileReader fileReader=new FileReader(inputFileName);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			String numWordLine=bufferedReader.readLine();
@@ -126,13 +115,15 @@ public class Anagram
 			for(int z=0;z<numWordsInInput;z++)
 			{
 				inputLine = bufferedReader.readLine();
-				//System.out.println("For "+inputLine);
+				
+				//Computing all the possible permutations
 				permutation(inputLine);
 				List<String> ansPerm= new ArrayList<String>();
+				
+				//Searching for permutation in the dictionary
 				for(int k=0;k<lsPerm.size();k++)
 				{
 					String currStr=lsPerm.get(k);
-					//Checking Full String
 					if(hashmapLinkedList[hashString(currStr)].contains(currStr))
 					{
 						ansPerm.add(currStr);
@@ -143,12 +134,11 @@ public class Anagram
 						String substr2=currStr.substring(p,currStr.length());
 						if(hashmapLinkedList[hashString(substr1)].contains(substr1))
 						{
-							//1 space
 							if(hashmapLinkedList[hashString(substr2)].contains(substr2))
 							{
 								ansPerm.add(substr1+" "+substr2);
 							}
-							//2 space
+							
 							for(int q=3;q<=substr2.length()-minWordLen;q++)
 							{
 								String subsub1=substr2.substring(0,q);
@@ -161,9 +151,9 @@ public class Anagram
 							}
 						}
 					}
-					
 				}
-				//Collections.sort(ansPerm);
+				
+				//Printing the outputs
 				HashSet<String> uniqueValues = new HashSet<String>(ansPerm);
 				List sortedList = new ArrayList(uniqueValues);
 				Collections.sort(sortedList);
@@ -177,11 +167,6 @@ public class Anagram
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		
-		
+		}	
 	}
-
 }
