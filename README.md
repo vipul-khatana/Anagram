@@ -29,7 +29,7 @@ Once we have the hashtable for the dictionary, we find out the possible permutat
 
 + **Vocabulary file** The vocabulary file must be stored as  vocabulary.txt format. The first line of the file will indicate the number of lines in the vocabulary followed by the words in every file. For eg. 
 
- 6
+                         6
 
  a
 
